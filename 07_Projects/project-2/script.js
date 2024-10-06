@@ -5,14 +5,27 @@ form.addEventListener("submit", function (e) {
   const height = parseInt(document.querySelector("#height").value);
   const weight = parseInt(document.querySelector("#weight").value);
   const results = document.querySelector("#results");
+  const GuidedResult = document.querySelector("#GuidedResult");
 
-  if (height === "" || height < 0 || isNaN(height)) {
+  if (isNaN(height) || height <= 0) {
     results.innerHTML = "Please Enter Valid Height!!!";
-  } else if (weight === "" || weight < 0 || isNaN(weight)) {
+    GuidedResult.innerHTML = ""; // Clear previous result
+  } else if (isNaN(weight) || weight <= 0) {
     results.innerHTML = "Please Enter Valid Weight!!!";
+    GuidedResult.innerHTML = ""; // Clear previous result
   } else {
-    // const bmi = (weight / ((height * weight) / 10000)).toFixed(2);
-    const bmi = (weight / ((height / 100) ** 2)).toFixed(2);
-    results.innerHTML = `<span> ${bmi} </span>`;
+    const bmi = (weight / (height / 100) ** 2).toFixed(2); // Calculate BMI
+    results.innerHTML = `<span>${bmi}</span>`; // Display BMI
+
+    const bmiValue = parseFloat(bmi); // Convert BMI back to a number for comparison
+
+    // Use the bmiValue to guide the results
+    if (bmiValue <= 18.6) {
+      GuidedResult.innerHTML = "Under Weight";
+    } else if (bmiValue > 18.6 && bmiValue <= 24.9) {
+      GuidedResult.innerHTML = "Normal Range";
+    } else {
+      GuidedResult.innerHTML = "Over Weight";
+    }
   }
 });
