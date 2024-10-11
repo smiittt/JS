@@ -90,3 +90,4 @@ function EndGame() {
   playGames = false;
   newGame();
 }
+  
