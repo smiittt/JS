@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smit Miyani</title>
+</head>
+
+<body>
+    <h1>Bugrifix Software Pvt Ltd</h1>
+    <button id="stop"> Stop</button>
+    <button id="start"> Start</button>
+</body>
+<script>
+    setTimeout(function () {
+        console.log("Welcome Smit Miyani");
+
+    }, 2000)
+
+    const start = document.querySelector('#start').addEventListener('click', function () {
+        intervalID = setInterval(function () {
+            console.log("Welcome Smit Miyani", Date.now());
+        }, 200)
+    })
+
+    document.querySelector('#stop').addEventListener('click', function () {
+        clearInterval(intervalID)
+    })
+
+</script>
+
+</html>
